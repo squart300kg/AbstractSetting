@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "415358571489",
+    "firebase_url": "https://kakao-auto-program-default-rtdb.firebaseio.com",
+    "project_id": "kakao-auto-program",
+    "storage_bucket": "kakao-auto-program.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:415358571489:android:dc125359fe602b66d178a0",
+        "android_client_info": {
+          "package_name": "com.example.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "415358571489-1td8818db6gcsvp202a2qpjv01fc84sn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHurLJgmlsvGpVxf_d6RAVEAPTIO0fPBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "415358571489-1td8818db6gcsvp202a2qpjv01fc84sn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

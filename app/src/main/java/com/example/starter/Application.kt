@@ -1,9 +1,7 @@
 package com.example.starter
 
 import android.app.Application
-import com.example.starter.di.networkModule
 import com.example.starter.di.preferencesModule
-import com.example.starter.di.repositoryModule
 import com.example.starter.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -37,17 +35,10 @@ open class Application: Application() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@Application)
-            modules(listOf(preferencesModule, networkModule ,repositoryModule ,viewModelModule))
+            modules(listOf(preferencesModule ,viewModelModule))
         }
 
     }
-
-
-//    open fun configureDi() = startKoin {
-//        androidLogger(Level.ERROR)
-//        androidContext(this@Application)
-//        modules(listOf(preferencesModule, networkModule ,repositoryModule ,viewModelModule))
-//    }
 
     companion object {
         private const val Tag = "Sauce Application"

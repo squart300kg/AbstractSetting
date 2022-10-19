@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
-<!--        <variable-->
-<!--            name=""-->
-<!--            type="" />-->
+        <variable
+            name="mainVm"
+            type="com.example.starter.ui.MainViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,31 +11,162 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
-        <fragment
-            android:id="@+id/nav_host_fragment_activity_main"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toTopOf="@id/nav_view"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvOnOff"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:itemIconTint="@drawable/menu_selector_color"
-            app:itemTextColor="@drawable/menu_selector_color"
-            app:menu="@menu/bottom_nav_menu" />
+            android:text="프로그램ON/OFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvKakaoRoomName"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Switch
+            android:id="@+id/etOnOff"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:checked="@{mainVm.controllPost.PROGRAM_ON_OFF}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/etKakaoRoomName"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvKakaoRoomName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="카카오방이름"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvMaxReceiveCount"
+            app:layout_constraintTop_toBottomOf="@+id/tvOnOff"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etKakaoRoomName"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            android:text="@{mainVm.controllPost.KAKAO_ROOM_NAME}"
+            app:layout_constraintTop_toBottomOf="@+id/etOnOff"
+            app:layout_constraintBottom_toTopOf="@+id/etMaxReceiveCount"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvMaxReceiveCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최대 수임 갯수"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvStartReceiveHour"
+            app:layout_constraintTop_toBottomOf="@+id/tvKakaoRoomName"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etMaxReceiveCount"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            setIntTextToString="@{mainVm.controllPost.MAX_REVEIVED_COUNT}"
+            app:layout_constraintTop_toBottomOf="@+id/etKakaoRoomName"
+            app:layout_constraintBottom_toTopOf="@+id/etStartReceiveHour"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvStartReceiveHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="캠페인 수집 시작 시간"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvTodayReceveCount"
+            app:layout_constraintTop_toBottomOf="@+id/tvMaxReceiveCount"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etStartReceiveHour"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            setIntTextToString="@{mainVm.controllPost.START_RECEVED_HOUR}"
+            app:layout_constraintTop_toBottomOf="@+id/etMaxReceiveCount"
+            app:layout_constraintBottom_toTopOf="@+id/etTodayReceveCount"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvTodayReceveCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="당일 수집 갯수"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvEndReceiveHour"
+            app:layout_constraintTop_toBottomOf="@+id/tvStartReceiveHour"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etTodayReceveCount"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:enabled="false"
+            setIntTextToString="@{mainVm.controllPost.TODAY_RECEIVE_COUNT}"
+            app:layout_constraintTop_toBottomOf="@+id/etStartReceiveHour"
+            app:layout_constraintBottom_toTopOf="@+id/etEndReceiveHour"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvEndReceiveHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="캠페인 수집 종료 시간"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvSettingComplete"
+            app:layout_constraintTop_toBottomOf="@+id/tvTodayReceveCount"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etEndReceiveHour"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:inputType="number"
+            android:textAlignment="center"
+            setIntTextToString="@{mainVm.controllPost.END_RECEIVED_HOUR}"
+            app:layout_constraintTop_toBottomOf="@+id/etTodayReceveCount"
+            app:layout_constraintBottom_toTopOf="@+id/tvSettingComplete"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvSettingComplete"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:text="설정하기"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="#FFC0CB"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
