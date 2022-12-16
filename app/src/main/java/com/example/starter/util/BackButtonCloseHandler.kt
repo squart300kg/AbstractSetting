@@ -8,7 +8,7 @@ class BackButtonCloseHandler(private var activity: Activity) {
     private var backButtonPressedTime: Long = 0
     private var toast: Toast? = null
 
-    fun onBackPressed() {
+    fun appExit() {
         if (System.currentTimeMillis() > backButtonPressedTime + intervalTimeMillis) {
             backButtonPressedTime = System.currentTimeMillis()
             toast = Toast.makeText(activity, R.string.back_button_close_guide, Toast.LENGTH_SHORT)

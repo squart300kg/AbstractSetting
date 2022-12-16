@@ -1,10 +1,7 @@
 package com.example.starter
 
 import android.app.Application
-import com.example.starter.di.networkModule
-import com.example.starter.di.preferencesModule
-import com.example.starter.di.repositoryModule
-import com.example.starter.di.viewModelModule
+import com.example.starter.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -21,15 +18,6 @@ open class Application: Application() {
 
         koinInitialize()
 
-        contextInitialize()
-
-    }
-
-
-
-
-    private fun contextInitialize() {
-        instance = this
     }
 
     private fun koinInitialize() {
@@ -37,23 +25,21 @@ open class Application: Application() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@Application)
-            modules(listOf(preferencesModule, networkModule ,repositoryModule ,viewModelModule))
+            modules(listOf(
+                preferencesModule,
+                networkModule,
+                repositoryModule,
+                viewModelModule,
+                viewModule))
         }
 
     }
-
 
 //    open fun configureDi() = startKoin {
 //        androidLogger(Level.ERROR)
 //        androidContext(this@Application)
 //        modules(listOf(preferencesModule, networkModule ,repositoryModule ,viewModelModule))
 //    }
-
-    companion object {
-        private const val Tag = "Sauce Application"
-        var instance: com.example.starter.Application? = null
-
-    }
 
 }
 

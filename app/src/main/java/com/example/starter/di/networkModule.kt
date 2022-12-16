@@ -1,8 +1,7 @@
 package com.example.starter.di
 
 import android.util.Log
-import com.example.starter.api.CommonApi
-import com.example.starter.api.YoutubeApi
+import com.example.starter.api.SampleApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -22,26 +21,8 @@ fun debugInterceptor(apiType: String) = HttpLoggingInterceptor(object: HttpLoggi
 }
 
 val networkModule = module {
-    factory <CommonApi> {
-        val okHttpClient = OkHttpClient.Builder()
-            .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .addInterceptor(debugInterceptor("Chatting"))
-//            .addInterceptor(AuthInterceptor(get()))
-            .build()
 
-        val url = "https://us-central1-thewarofstars-8f9a8.cloudfunctions.net/"
-
-        Retrofit.Builder()
-            .client(okHttpClient)
-            .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(CommonApi::class.java)
-    }
-
-    factory <YoutubeApi> {
+    factory <SampleApi> {
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -57,6 +38,6 @@ val networkModule = module {
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(YoutubeApi::class.java)
+            .create(SampleApi::class.java)
     }
 }

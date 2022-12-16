@@ -1,48 +1,42 @@
 package com.example.starter.ui
 
 import android.os.Bundle
-import androidx.lifecycle.LiveData
-import androidx.navigation.NavController
+import android.util.SparseArray
+import androidx.fragment.app.Fragment
 import com.example.starter.R
 import com.example.starter.base.BaseActivity
 import com.example.starter.databinding.ActivityMainBinding
-import com.example.starter.ui.navigation.setupWithNavController
+import com.example.starter.ext.init
+import com.example.starter.ui.firstTab.FirstTabFragment
+import com.example.starter.ui.forthTab.ForthTabFragment
+import com.example.starter.ui.secondTab.SecondTabFragment
+import com.example.starter.ui.thirdTab.ThirdTabFragment
 import com.example.starter.util.BackButtonCloseHandler
-
+import org.koin.android.ext.android.inject
+import org.koin.core.qualifier.named
+import javax.inject.Inject
 
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private var currentNavController: LiveData<NavController>? = null
-
     private val backButtonCloseHandler = BackButtonCloseHandler(this)
+
+    private val idToFragmentMap: SparseArray<Fragment> by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setUpBottomNavigationBar()
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return currentNavController?.value?.navigateUp() ?: false
+        dataBinding.run {
+            bottomNavigation.init(
+                fragmentManager = supportFragmentManager,
+                containerId = mainNavFragment.id,
+                idToFragmentMap = idToFragmentMap)
+        }
     }
 
     override fun onBackPressed() {
-        when (currentNavController?.value?.currentDestination?.label) {
-            getString(R.string.title_home) -> backButtonCloseHandler.onBackPressed()
+        when (dataBinding.bottomNavigation.selectedItemId) {
+            R.id.firstTabFragment -> backButtonCloseHandler.appExit()
             else -> super.onBackPressed()
         }
     }
-    private fun setUpBottomNavigationBar() {
-
-        val navGraphIds = listOf(R.navigation.program, R.navigation.youtube, R.navigation.mall)
-        val controller = dataBinding.navView.setupWithNavController(
-            navGraphIds = navGraphIds,
-            fragmentManager = supportFragmentManager,
-            containerId = R.id.nav_host_fragment_activity_main,
-            intent = intent
-        )
-
-        currentNavController = controller
-    }
-
 }
