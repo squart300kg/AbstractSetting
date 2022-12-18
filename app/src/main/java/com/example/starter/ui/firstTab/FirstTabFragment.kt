@@ -23,8 +23,8 @@ class Solution {
     fun solution(tripleCoordinate: Array<IntArray>): IntArray {
         require(tripleCoordinate.size == INPUT_COORDINATE_COUNT)
 
-        val noDulplicatedXCoordinateSet = mutableSetOf<Int>()
-        val noDulplicatedYCoordinateSet = mutableSetOf<Int>()
+        val noDulplicatedXCoordinateSet by lazy { mutableSetOf<Int>() }
+        val noDulplicatedYCoordinateSet by lazy { mutableSetOf<Int>() }
 
 
         tripleCoordinate.forEachIndexed { index, coordinate ->
@@ -42,6 +42,16 @@ class Solution {
         return noDulplicatedXCoordinateSet.toIntArray() + noDulplicatedYCoordinateSet.toIntArray()
     }
 
+    fun solution2(input: Int): String {
+        var result = ""
+
+        repeat(input) { rowIndex ->
+            result += "*".repeat(rowIndex + 1).plus("\n")
+        }
+
+        return result
+    }
+
 }
 class FirstTabFragment : BaseFragment<FirstTabFragmentBinding>(R.layout.first_tab_fragment) {
 
@@ -51,8 +61,10 @@ class FirstTabFragment : BaseFragment<FirstTabFragmentBinding>(R.layout.first_ta
         super.onViewCreated(view, savedInstanceState)
         Log.i("bottomId", "First Loaded")
 
-        val result = Solution().solution(arrayOf(intArrayOf(1,4), intArrayOf(3,4), intArrayOf(3,10)))
-        binding.tvTitle.text = "${result[0]}, ${result[1]}"
+//        val result = Solution().solution(arrayOf(intArrayOf(1,4), intArrayOf(3,4), intArrayOf(3,10)))
+//        binding.tvTitle.text = "${result[0]}, ${result[1]}"
+        val result = Solution().solution2(12)
+        binding.tvTitle.text = "${result}"
         Log.i("result : " ,"$result")
     }
 
