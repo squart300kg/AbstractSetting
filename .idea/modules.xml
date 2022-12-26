@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TheWarOfStars.iml" filepath="$PROJECT_DIR$/.idea/modules/TheWarOfStars.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TheWarOfStars.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AbstractSetting.iml" filepath="$PROJECT_DIR$/.idea/AbstractSetting.iml" />
     </modules>
   </component>
 </project>
