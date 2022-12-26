@@ -45,6 +45,16 @@ android {
 
 dependencies {
 
+    /** 3rd party **/
+    // 네이버 로그인
+    implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'
+
+    // 카카오 로그인 sdk를 사용하기 위해 필요.
+    implementation "com.kakao.sdk:v2-user:2.8.0" // 카카오 로그인
+
+    // facebook 로그인
+    implementation 'com.facebook.android:facebook-login:12.3.0'
+
     // secure sharedPreference
     implementation 'com.scottyab:secure-preferences-lib:0.1.7'
 
